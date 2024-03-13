@@ -169,6 +169,7 @@ LIBBPF_0.0.9 {
 		perf_buffer__consume;
 		ring_buffer__add;
 		ring_buffer__consume;
+		ring_buffer__consume_max;
 		ring_buffer__free;
 		ring_buffer__new;
 		ring_buffer__poll;

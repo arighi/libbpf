@@ -376,15 +376,20 @@ int ring__map_fd(const struct ring *r)
 	return r->map_fd;
 }
 
-int ring__consume(struct ring *r)
+int ring__consume_max(struct ring *r, size_t max_items)
 {
 	int64_t res;
 
-	res = ringbuf_process_ring(r, INT_MAX);
+	res = ringbuf_process_ring(r, max_items);
 	if (res < 0)
 		return libbpf_err(res);
 
 	return res;
+}
+
+int ring__consume(struct ring *r)
+{
+	return ring__consume_max(r, INT_MAX);
 }
 
 static void user_ringbuf_unmap_ring(struct user_ring_buffer *rb)
